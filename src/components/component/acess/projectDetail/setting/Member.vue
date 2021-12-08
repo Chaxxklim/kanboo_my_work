@@ -17,7 +17,7 @@
                     <li v-for="item,index in this.$store.state.setting.projectMemberList" class="member-li" :key=index :id="`memberList-${index}`">
                         <div class="member-li-div">
                             <div class="member-li-img-div">
-                                <img :src="this.$store.state.setting.projectMemberList[index].member.image" class="member-img">
+                                <img :src="this.$store.state.setting.projectMemberList[index].member.img" class="member-img">
                             </div>
                             <div class="member-li-name-div">{{$store.state.setting.projectMemberList[index].member.nickname}}</div>
                             <div class="member-li-ktag-div">{{$store.state.setting.projectMemberList[index].member.kTag}}</div>
@@ -53,64 +53,46 @@ export default {
     ...mapMutations({
         changeClickState : 'setting/changeClickState'
     }),
-
-        // isRoleMatch(){ //배열에 넣고 position 출력.
-
-        //     for(let i in this.$store.state.setting.projectMemberList){
-        //         const arr = [];
-                
-        //         for(let j in this.$store.state.setting.projectMemberList[i].role){
-        //             arr.push(this.$store.state.setting.projectMemberList[i].role);
-
-        //             for(let k in this.$store.state.setting.roleList){
-        //                 if(this.$store.state.setting.projectMemberList[i].role[j] == this.$store.state.setting.roleList[k]){
-        //                     document.getElementById(this.$store.state.setting.roleList[k] + '-span' + i).style.color = "red";
-        //                 }
-        //             }
-        //         }
-        //         const temp = {};
-        //         temp[i] = arr;
-        //         this.$store.state.setting.roleMatch.push(temp)
-        //         console.log(JSON.stringify(this.$store.state.setting.roleMatch))
-        //     }
-        //     // console.log("json " + JSON.stringify(this.$store.state.roleMatch));
-        // },
         isRoleMatch(){
             
             for(let i in this.$store.state.setting.projectMemberList){
-               for(let j in this.$store.state.setting.projectMemberList[i].role){
-                  
-                   for(let k in this.$store.state.setting.roleList){
-                       if(this.$store.state.setting.projectMemberList[i].role[j] ==  this.$store.state.setting.roleList[k]){
-                           console.log("조건문들옴")
-                           this.$store.state.setting.projectMemberList[i].role.push(this.$store.state.setting.roleList[k]);
-                           document.getElementById(this.$store.state.setting.roleList[k] + '-span' + i).style.color = "red";
-
-                       }
-                       
-                   }
-               }
+                for(let j in this.$store.state.setting.projectMemberList[i].role){
+                    for(let k in this.$store.state.setting.roleList){
+                        if(this.$store.state.setting.projectMemberList[i].role[j] ==  this.$store.state.setting.roleList[k]){
+                            // this.$store.state.setting.projectMemberList[i].role.push(this.$store.state.setting.roleList[k]);
+                            document.getElementById(this.$store.state.setting.roleList[k] + '-span' + i).style.color = "red";
+                        }
+                    }
+                }
             }
         },
 
         clickModifyBtn(){
             console.log(this.$store.state.setting.roleList)
-
             this.$store.state.setting.clickState = true; 
         },
-
-      
         spanClick(spanId, role, index){ // 클릭했을 때 이벤트 (배열에 데이터 넣음)
-                        alert(role)
-                        spanId,role,index;
-                        const arr = [];
-                        const temp = {};
-                        temp[0] = arr;
-                        this.$store.state.setting.projectMemberList[index].role.push(role)
-                        this.isRoleMatch();
-                
-                
-            
+            const arr = [];
+            const temp = {};
+            temp[0] = arr;
+                if(this.$store.state.setting.projectMemberList[index].role.includes(role)){
+                    for(var i in this.$store.state.setting.projectMemberList[index].role){
+                        if(this.$store.state.setting.projectMemberList[index].role[i] == role){
+                            if(role == "PM"){
+                                alert("PM은 삭제할 수 없습니다.")
+                                break;
+                            }
+                            document.getElementById(this.$store.state.setting.projectMemberList[index].role[i] + '-span' + index).style.color = "white";
+                            this.$store.state.setting.projectMemberList[index].role.splice(i, 1)
+                        }
+                    }
+                }else if(role == "PM"){
+                    alert("PM은 추가할 수 없습니다.")
+                }else{
+                    this.$store.state.setting.projectMemberList[index].role.push(role)
+                }
+            console.log(this.$store.state.setting.projectMemberList[index].role)
+                    this.isRoleMatch();
         },
     },
 
@@ -126,6 +108,7 @@ export default {
 
 <style scoped>
 .main-div{
+    border-radius : 2%;
     background-color : #2C2F3B;
     color : white;
     width: 60vw;
@@ -146,8 +129,10 @@ export default {
     align-items : stretch;
     justify-content: space-between;
     margin : 10px;
+    height : 20%;
 }
 .main-bottom{
+    height : 80%;
     display : flex;
     justify-content: space-between;
     
@@ -175,10 +160,12 @@ export default {
     justify-content: space-around;
     align-items: stretch;
     margin-left: 20px;
+    
     /* flex-direction: row; */
 }
 .member-li-role-div{
-    margin-left : 80px;
+    margin-left : 50px;
+    
 }
 .member-li{
     margin-left: 10px;

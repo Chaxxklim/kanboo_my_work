@@ -13,9 +13,10 @@ export default {
 
 <style scoped>
 .project-name-div{
+    border-radius : 5%;
     display :flex;
     justify-content : flex-start;
-    
+    padding : 15px;
     width: 60vw;
     height : calc(100vh - 920px);
     margin-top : 50px;
