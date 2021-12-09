@@ -165,7 +165,7 @@ export default {
 
 <style scoped>
 .main-div{
-    border-radius : 2%;
+    border-radius : 5px;
     padding : 15px;
     background-color : #2C2F3B;
     display : flex;
@@ -173,7 +173,10 @@ export default {
     align-items : flex-start;
     color : white;
     width : 60vw;
+    /* margin-top : auto; */
+    margin-bottom : 50px; 
     height : calc(100vh - 700px);
+
 
 }
 .main-left-div{
@@ -236,7 +239,7 @@ export default {
 .search-input{
     background-color : #414556;
     border : 0px;
-    border-radius : 10%;
+    border-radius : 5px;
     width : 170px;
     height : 30px;
     margin : 10px;

@@ -56,7 +56,7 @@ export default {
 <style scoped>  
 .setting-container{
     display: flex; 
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     overflow: scroll;
@@ -65,6 +65,7 @@ export default {
     width : 100vw;
     height : calc(100vh - 70px);
     background-color: #16161A;
+    /* margin-bottom: auto; */
     /* margin 줘서 디자인 */
 }
 .setting-container::-webkit-scrollbar{

@@ -108,7 +108,7 @@ export default {
 
 <style scoped>
 .main-div{
-    border-radius : 2%;
+    border-radius : 5px;
     background-color : #2C2F3B;
     color : white;
     width: 60vw;
@@ -121,6 +121,8 @@ export default {
     /* white-space: nowrap; */
     font-size: 20px;
     overflow : hidden;
+    /* margin-top : auto; */
+    margin-bottom : auto;
     
     
 }
