@@ -1,87 +1,146 @@
 <template>
-  <div class="container">
-    <div id="startGrid">
-      <!-- <grid :data="gridProps.data"
-            :columns="gridProps.columns"
-            :rowHeaders="gridProps.rowHeaders"
-            :columnOptions="gridProps.columnOptions">
-      </grid> -->
+
+    <div class="grid-div">
+      <v-grid theme="compact" :source="rows" :columns="columns" />
     </div>
-  </div>
+    
+
 </template>
 
 <script>
+import VGrid from "@revolist/vue3-datagrid";
 
-// import axios from 'axios';
-// import 'tui-grid/dist/tui-grid.css'
-// import 'tui-date-picker/dist/tui-date-picker.css';
-// import 'tui-time-picker/dist/tui-time-picker.css';
-// import 'tui-pagination/dist/tui-pagination.css';
-// import { Grid } from '@toast-ui/vue-grid';
-// import Grid from '@toast-ui/vue-grid/src/Grid.vue';
 
 export default {
-
+  
   components: {
-    // 'grid' : Grid
+    VGrid
     
   },
-  mounted(){
+  methods: {
+    gridTest(){
+      const grid = document.querySelector('revo-grid');
+      grid.autoSizeColumn = true;
+      grid.source = this.rows;
+      grid.columns = this.columns;
+    },
+    
 
+    testFunction(){
+      
+      
+    }
+
+  },
+  mounted(){
+    
   },
   created() {
 
-    this.gridProps = {
-      data : [
-        // row에 들어갈 데이터 
-        {
-          demandIdx : "1",
-          demandName : "고쳐줘"
-        },
-        {
-          demandIdx : "2",
-          demandName : "없애줘"
-        },
-        {
-          demandIdx : "3",
-          demandName : "만들어줘"
-        }
-      ],
-      columns : [
-        {
-          header : '요구사항 id',
-          name : 'demandIdx'
-        },
-        {
-          header : '요구사항명',
-          name : 'demandName'
-        }
-      ]
-    }
+ 
   },
   data() {
     return{
+      
+      columns : [
+        {
+          name : "No",
+          prop : "no",
+          size : 50
+        },
+        {
+          name : "카테고리",
+          prop : "category",
+          size : 130
+        },
+        {
+          name : "요구사항 ID",
+          prop : "demandId",
+          size : 150
+        },
+        {
+          name : "요구사항 명",
+          prop : "demandName",
+          size : 200
+        },
+        {
+          name : "요구사항 상세 설명",
+          prop : "demandDetail",
+          size : 500
+        },
+        {
+          name : "요청자(요청부서)",
+          prop : "requester",
+          size : 300
+        },
+        {
+          name : "비고",
+          prop : "remark"
+        }
+        
+      ],
 
+      rows : [
+        {
+          no : "1",
+          category : "testcate",
+          demandId : "testid",
+          demandName : "testnm",
+          demandDetail : "testdta",
+          requester : "testreqe",
+          remark : "testremar"
+        },
+        {
+          no : "2",
+          category : "testcate",
+          demandId : "testid",
+          demandName : "testnm",
+          demandDetail : "testdta",
+          requester : "testreqe",
+          remark : "testremar"
+        },
+        {
+          no : "3",
+          category : "testcate",
+          demandId : "testid",
+          demandName : "testnm",
+          demandDetail : "testdta",
+          requester : "testreqe",
+          remark : "testremar"
+        },
+      ]
     }
-  },
-  methods : {
-
   }
+
 }
 </script>
 
 <style scoped>
-    .container {
-    width : 100vw;
-    height : 100vh;
-    background-color: #16161A;
-    }
-    .v-grid{
-      background-color: white;
-    }
-    .inner-content-table{
-      width : 90vw;
-      height : 90vh;
-    }
+.main-div {
+  width : 300px;
+  height : 100%;
+  background-color: #16161A;
+}
+.v-grid{
 
+}
+
+
+.grid-div{
+  border : 1px solid red;
+  border-radius: 5px;
+  position : relative;
+  background-color: white;
+  left : 50%;
+  transform: translateX(-50%);
+  width : 90%;
+  height : 90%;
+  /* overflow-y : auto; */
+
+  
+}
+
+.header-content{
+  border : 1px solid blue;
+}
 </style>
